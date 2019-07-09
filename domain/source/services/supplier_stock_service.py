@@ -39,13 +39,13 @@ class SupplierStockService:
     order_supplier = priority.get_order_supplier()
 
     for supplier in order_supplier:
-      # import pdb;pdb.set_trace()
       supplier_is_valid = stock.supplier_is_valid(supplier, quantity)
       if supplier_is_valid == True:
         stock.minus_supplier_quantity(supplier, quantity)
         self.orders_success.append(order)
-      else:
-        self.orders_errors.append(order)
+        return 
+
+    self.orders_errors.append(order)
 
   def _divide_order_list(self, order_list):
     orders_payed = []
